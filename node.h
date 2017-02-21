@@ -1,7 +1,7 @@
 #ifndef NODE_H
 #define NODE_H
 
-#include <vector>
+//#include <vector>
 
 #include "state.h"
 
@@ -12,8 +12,9 @@ class Node
 		std::vector<Node*> child_list;
 		state st;
 		int depth;
+		static const int cost;
 	public:
-		Node();
+		//Node();
 		Node(state input);
 		Node(state input, Node* parent);
 		virtual ~Node();
@@ -23,6 +24,7 @@ class Node
 				char seventh, char eighth, char ninth);
 		void editState(std::vector<char> v);
 		int getDepth();
+		bool operator<(Node &aNode);
 		//void append(state st);
 		//int pathcost();
 };

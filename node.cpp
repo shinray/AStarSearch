@@ -1,19 +1,24 @@
 #include "node.h"
 
-Node::Node() {
+// Node::Node() {
 	
-}
+// }
 
+const int Node::cost = 1; // n-puzzle
+
+// presumably this is a root node
 Node::Node(state input) {
-	
+	depth = cost;
 }
 
 Node::Node(state input, Node* parent) {
-	
+	depth = parent->getDepth() + cost;
 }
 
 Node::~Node() {
 	// see tree.cpp for destructor
+	// nvm, maybe I don't want to use tree at all
+	
 }
 
 state Node::getState() {
@@ -34,6 +39,10 @@ void Node::editState(std::vector<char> v) {
 
 int Node::getDepth() {
 	return depth;
+}
+
+bool Node::operator<(Node &aNode) {
+	return (this->getDepth() < aNode.getDepth());
 }
 
 /*
