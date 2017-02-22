@@ -25,9 +25,11 @@ class state {
 		void set(char val, int index);
 		std::vector<char> getState();
 		void reset();
-		friend std::ostream& operator<< (std::ostream &out, const state &st);
+		// friend std::ostream& operator<< (std::ostream &out, const state &st);
 		std::vector<state> genChildren();
 		bool isGoal();
 };
+
+std::ostream& operator<<(std::ostream &out, const state &st);
 
 #endif

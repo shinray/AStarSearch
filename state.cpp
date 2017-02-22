@@ -103,7 +103,7 @@ void state::swap(int first, int second, std::vector<state> &ret) {
 	return;
 }
 
-std::ostream& state::operator<< (std::ostream &out, const state &st)
+std::ostream& operator<< (std::ostream &out, const state &st)
 {
 	out << board[0] << ' ' << board[1] << ' ' << board[2] << '\n';
 	out << board[3] << ' ' << board[4] << ' ' << board[5] << '\n';
