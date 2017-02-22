@@ -8,6 +8,14 @@ const std::vector<char> state::goal1 = {
 		'1','2','3',
 		'4','0','5',
 		'6','7','8'};
+		
+std::ostream& operator<< (std::ostream &out, const state &st)
+{
+	out << st.board[0] << ' ' << st.board[1] << ' ' << st.board[2] << '\n' 
+	<< st.board[3] << ' ' << st.board[4] << ' ' << st.board[5] << '\n' 
+	<< st.board[6] << ' ' << st.board[7] << ' ' << st.board[8] << '\n';
+	return out;
+}
 
 //default constructor
 state::state() {
@@ -101,13 +109,6 @@ void state::swap(int first, int second, std::vector<state> &ret) {
 	state newstate = state(tmp);
 	ret.push_back(newstate);
 	return;
-}
-
-std::ostream& operator<< (std::ostream &out, const state &st)
-{
-	out << board[0] << ' ' << board[1] << ' ' << board[2] << '\n';
-	out << board[3] << ' ' << board[4] << ' ' << board[5] << '\n';
-	out << board[6] << ' ' << board[7] << ' ' << board[8] << '\n';
 }
 
 // generates a vector of valid child states
