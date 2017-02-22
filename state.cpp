@@ -136,7 +136,7 @@ bool state::isGoal() {
 	bool ret = false;
 	
 	if (board == goal0) return true;
-	if (board == goal1) return true;
+	//if (board == goal1) return true;
 	
 	return ret;
 }

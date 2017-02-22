@@ -14,7 +14,7 @@ class UCS
 		bool isRepeat(Node n);
 	public:
 		UCS(state st);
-		void search(std::priority_queue<Node> s);
+		void search();
 };
 
 #endif

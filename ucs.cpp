@@ -3,7 +3,7 @@
 UCS::UCS(state st) {
 	root = Node(st);
 	stack.push(root);
-	search(stack);
+	//search(stack);
 }
 
 // Checks to see if a given node is a repeat
@@ -23,7 +23,7 @@ bool UCS::isRepeat(Node n) {
 	return ret;
 }
 
-void UCS::search(std::priority_queue<Node> s) {
+void UCS::search() {
 	while(!s.empty()) {
 		Node tmp = s.top();
 		s.pop();
