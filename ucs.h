@@ -10,6 +10,8 @@ class UCS
 	private:
 		Node root;
 		std::priority_queue<Node> stack;
+		std::vector<Node> solution;
+		bool isRepeat(Node n);
 	public:
 		UCS(state st);
 		void search(std::priority_queue<Node> s);

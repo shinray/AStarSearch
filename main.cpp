@@ -1,8 +1,8 @@
-#include "node.h"
+#include "ucs.h"
 
-void uniformcost() {
+// void uniformcost() {
 	
-}
+// }
 
 int main(int argc,char* argv[]){
 	return 0;

@@ -12,7 +12,7 @@ class Node
 		std::vector<Node*> child_list;
 		state st;
 		int depth;
-		static const int cost;
+		static const int cost; // now that's a virtual tongue twister
 	public:
 		//Node();
 		Node(state input);
@@ -24,6 +24,8 @@ class Node
 				char seventh, char eighth, char ninth);
 		void editState(std::vector<char> v);
 		int getDepth();
+		Node* getParent();
+		std::vector<state> genChild();
 		bool operator<(Node &aNode);
 		//void append(state st);
 		//int pathcost();

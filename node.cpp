@@ -9,9 +9,13 @@ const int Node::cost = 1; // n-puzzle
 // presumably this is a root node
 Node::Node(state input) {
 	depth = cost;
+	parent = NULL;
+	st = input;
 }
 
-Node::Node(state input, Node* parent) {
+Node::Node(state input, Node* p) {
+	st = input;
+	parent = p;
 	depth = parent->getDepth() + cost;
 }
 
@@ -39,6 +43,23 @@ void Node::editState(std::vector<char> v) {
 
 int Node::getDepth() {
 	return depth;
+}
+
+Node* Node::getParent() {
+	return parent;
+}
+
+std::vector<state> Node::genChild(){
+	std::vector<state> children = st.genChild();
+	
+	if (!child_list.empty()) child_list.clear();
+	
+	for(int i = 0; i < children.size(); i++)
+	{
+		child_list.push_back(&children[i]);
+	}
+	
+	return children;
 }
 
 bool Node::operator<(Node &aNode) {
