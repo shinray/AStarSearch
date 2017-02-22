@@ -1,6 +1,7 @@
 #include <iostream>
 #include "ucs.h"
 #include "state.cpp"
+#include "ucs.cpp"
 
 // void uniformcost() {
 	

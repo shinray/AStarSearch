@@ -19,11 +19,11 @@ Node::Node(state input, Node* p) {
 	depth = parent->getDepth() + cost;
 }
 
-Node::~Node() {
+// Node::~Node() {
 	// see tree.cpp for destructor
 	// nvm, maybe I don't want to use tree at all
 	
-}
+// }
 
 state Node::getState() {
 	return st;
