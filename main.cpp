@@ -8,6 +8,7 @@
 int main(int argc,char* argv[]){
 	int puzzleType;
 	int searchType;
+	state st;
 	
 	std::cout << "Welcome to skuo004's 8-puzzle solver.\n";
 	std::cout << "Type 1 to use a default puzzle, or 2 to"
@@ -18,7 +19,7 @@ int main(int argc,char* argv[]){
 	if(puzzleType == 2)
 	{
 		unsigned int input;
-		std::vector<char> v(9);
+		std::vector<char> v(9,0);
 		std::cout << "\nEnter your puzzle, use a '0' to represent"
 				<< " the blank\n"
 				<< "Enter the first row, use space or tabs between"
@@ -41,10 +42,11 @@ int main(int argc,char* argv[]){
 			v[i] = '0' + input;
 		}
 		
-		state st = state(input);
+		st = state(input);
 	}
 	else {
-		state st = state();
+		//default
+		st = state();
 	}
 	
 	std::cout << "Enter your choice of algorithm" << std::endl;
