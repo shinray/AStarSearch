@@ -3,18 +3,18 @@
 const std::vector<char> state::goal0 = {
 		'1','2','3',
 		'4','5','6',
-		'7','8','b'};
+		'7','8','0'};
 const std::vector<char> state::goal1 = {
 		'1','2','3',
-		'4','b','5',
+		'4','0','5',
 		'6','7','8'};
 
 //default constructor
 state::state() {
 	board = {
-		'1','2','3',
-		'4','5','6',
-		'7','8','b'};
+		'7','0','5',
+		'6','4','3',
+		'2','1','8'};
 	return;
 }
 
@@ -78,7 +78,7 @@ void state::reset(){
 	board = {
 	'1','2','3',
 	'4','5','6',
-	'7','8','b'};
+	'7','8','0'};
 	return;
 }
 
@@ -87,7 +87,7 @@ int state::getHole() {
 	int ret = -1;
 	for(int i = 0; i < 9; i++)
 	{
-		if (board[i] == 'b') ret = i;
+		if (board[i] == '0') ret = i;
 	}
 	
 	return ret;
