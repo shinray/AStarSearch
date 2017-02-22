@@ -26,6 +26,8 @@ bool UCS::isRepeat(Node n) {
 void UCS::search() {
 	while(!s.empty()) {
 		Node tmp = s.top();
+		std::cout << "Expanding state\n";
+		std::cout << tmp.getState();
 		s.pop();
 		
 		if (!tmp.getState().isGoal()) {
