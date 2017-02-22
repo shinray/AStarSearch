@@ -14,8 +14,10 @@ class UCS
 		std::queue<Node*> q;
 		std::vector<Node> solution;
 		bool isRepeat(Node n);
+		std::vector<Node*> nodelist;
 	public:
 		UCS(state st);
+		virtual ~UCS();
 		void search();
 };
 

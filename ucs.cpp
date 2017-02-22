@@ -4,10 +4,18 @@
 
 
 UCS::UCS(state st) {
-	Node root(st);
-	q.push(&root);
+	Node* root = new Node(st);
+	q.push(root);
+	nodelist.push_back(root);
 	//search(stack);
 	return;
+}
+
+// destructor
+UCS::~UCS() {
+	for(Node *n : nodelist){
+		delete n;
+	}
 }
 
 // Checks to see if a given node is a repeat
@@ -38,10 +46,12 @@ void UCS::search() {
 			std::vector<state> tmpchildren = tmp->genChild();
 			for (unsigned i = 0; i < tmpchildren.size(); i++)
 			{
-				Node newNode = Node(tmpchildren[i], tmp);
-				if(!isRepeat(newNode))
+				//Node newNode = Node(tmpchildren[i], tmp);
+				Node* newNode = new Node(tmpchildren[i], tmp);
+				nodelist.push_back(newNode);
+				if(!isRepeat(*newNode))
 				{
-					q.push(&newNode);
+					q.push(newNode);
 				}
 			}
 		}

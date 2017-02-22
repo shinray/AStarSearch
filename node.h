@@ -16,7 +16,7 @@ class Node
 		//Node();
 		Node(state input);
 		Node(state input, Node* parent);
-		//virtual ~Node();
+		// virtual ~Node();
 		state getState();
 		void editState(char first, char second, char third,
 				char fourth, char fifth, char sixth,
