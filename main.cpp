@@ -1,5 +1,6 @@
 #include <iostream>
 #include "ucs.h"
+#include "state.cpp"
 
 // void uniformcost() {
 	
@@ -8,7 +9,7 @@
 int main(int argc,char* argv[]){
 	int puzzleType;
 	int searchType;
-	state st;
+	state st = state();
 	
 	std::cout << "Welcome to skuo004's 8-puzzle solver.\n";
 	std::cout << "Type 1 to use a default puzzle, or 2 to"
@@ -42,12 +43,12 @@ int main(int argc,char* argv[]){
 			v[i] = '0' + input;
 		}
 		
-		st = state(input);
+		st = state(v);
 	}
-	else {
-		//default
-		st = state();
-	}
+	// else {
+		// default
+		// state st = state();
+	// }
 	
 	std::cout << "Enter your choice of algorithm" << std::endl;
 	std::cin >> searchType;
@@ -55,9 +56,11 @@ int main(int argc,char* argv[]){
 	switch(searchType)
 	{
 		case 1:
+		{
 			UCS UCSsearch = UCS(st);
 			UCSsearch.search();
 			break;
+		}
 		case 2:
 			break;
 		case 3:

@@ -7,9 +7,9 @@
 
 class state {
 	private:
-		std::vector<char> board (9);
-		static const std::vector<char> goal0 (9);
-		static const std::vector<char> goal1 (9);
+		std::vector<char> board;
+		static const std::vector<char> goal0;
+		static const std::vector<char> goal1;
 		int getHole();
 		void swap(int first, int second);
 	public:
