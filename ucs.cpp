@@ -1,9 +1,13 @@
 #include "ucs.h"
+#include "state.h"
+#include "node.h"
+
 
 UCS::UCS(state st) {
 	root = Node(st);
-	stack.push(root);
+	q.push(&root);
 	//search(stack);
+	return;
 }
 
 // Checks to see if a given node is a repeat
@@ -14,7 +18,7 @@ bool UCS::isRepeat(Node n) {
 	Node* tmp = n.getParent();
 	while (!ret && tmp != NULL)
 	{
-		if (tmp->getState() == tobechecked.getState())
+		if (tmp->getState().getState() == tobechecked.getState().getState())
 		{
 			ret = true;
 		}
@@ -24,20 +28,20 @@ bool UCS::isRepeat(Node n) {
 }
 
 void UCS::search() {
-	while(!s.empty()) {
-		Node tmp = s.top();
+	while(!q.empty()) {
+		Node* tmp = q.front();
 		std::cout << "Expanding state\n";
-		std::cout << tmp.getState();
-		s.pop();
+		std::cout << tmp->getState();
+		q.pop();
 		
-		if (!tmp.getState().isGoal()) {
-			std::vector<state> tmpchildren = tmp.genChild();
-			for (int i = 0; i < tmpchildren.size(); i++)
+		if (!tmp->getState().isGoal()) {
+			std::vector<state> tmpchildren = tmp->genChild();
+			for (unsigned i = 0; i < tmpchildren.size(); i++)
 			{
-				Node newNode = Node();
+				Node newNode = Node(tmpchildren[i], tmp);
 				if(!isRepeat(newNode))
 				{
-					s.push(newNode);
+					q.push(&newNode);
 				}
 			}
 		}
@@ -47,17 +51,17 @@ void UCS::search() {
 				solution.clear();
 			}
 			// start calculating solution
-			solution.push_back(tmp);
+			solution.push_back(*tmp);
 			//s.pop();
-			tmp = *(tmp.getParent());
+			tmp = tmp->getParent();
 			
-			while (tmp.getParent() != NULL) {
-				solution.push_back(tmp);
-				tmp = *(tmp.getParent());
+			while (tmp->getParent() != NULL) {
+				solution.push_back(*tmp);
+				tmp = tmp->getParent();
 			}
 			
 			// push root node
-			solution.push_back(tmp);
+			solution.push_back(*tmp);
 			
 			// for (int i = 0; i < solution.size(); i++)
 			// {

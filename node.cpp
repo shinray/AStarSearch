@@ -1,5 +1,7 @@
 #include "node.h"
 
+#include "state.h"
+
 // Node::Node() {
 	
 // }
@@ -50,14 +52,14 @@ Node* Node::getParent() {
 }
 
 std::vector<state> Node::genChild(){
-	std::vector<state> children = st.genChild();
+	std::vector<state> children = st.genChildren();
 	
-	if (!child_list.empty()) child_list.clear();
+	//if (!child_list.empty()) child_list.clear();
 	
-	for(int i = 0; i < children.size(); i++)
-	{
-		child_list.push_back(&children[i]);
-	}
+	// for(unsigned i = 0; i < children.size(); i++)
+	// {
+		// child_list.push_back(&children[i]);
+	// }
 	
 	return children;
 }

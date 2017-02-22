@@ -2,14 +2,13 @@
 #define NODE_H
 
 //#include <vector>
-
 #include "state.h"
 
 class Node
 {
 	private:
 		Node* parent;
-		std::vector<Node*> child_list;
+		//std::vector<Node*> child_list;
 		state st;
 		int depth;
 		static const int cost; // now that's a virtual tongue twister
