@@ -36,13 +36,18 @@ bool UCS::isRepeat(Node n) {
 }
 
 void UCS::search() {
+	int nodeCount = 0;
+	int maxQsize = 1;
+	int currQsize = 1;
 	while(!q.empty()) {
 		Node* tmp = q.front();
 		std::cout << "Expanding state\n";
 		std::cout << tmp->getState();
 		q.pop();
+		currQsize--;
 		
 		if (!tmp->getState().isGoal()) {
+			nodeCount++; // expanding node
 			std::vector<state> tmpchildren = tmp->genChild();
 			for (unsigned i = 0; i < tmpchildren.size(); i++)
 			{
@@ -52,10 +57,14 @@ void UCS::search() {
 				if(!isRepeat(*newNode))
 				{
 					q.push(newNode);
+					currQsize++;
+					// calculates max
+					maxQsize = (currQsize > maxQsize) ? currQsize : maxQsize;
 				}
 			}
 		}
 		else {
+			int finalDepth = tmp->getDepth();
 			// clear, just in case.
 			if (!solution.empty()) {
 				solution.clear();
@@ -77,7 +86,13 @@ void UCS::search() {
 			// {
 				
 			// }
+			std::cout << "\nNodes expanded: " << nodeCount << '\n';
+			std::cout << "Max queue size: " << maxQsize << '\n';
+			std::cout << "Goal node depth: " << finalDepth << '\n';
 			return;
 		}
 	}
+	
+	std::cout << "\nucs: ERROR: queue emptied!\n";
+	return;
 }
