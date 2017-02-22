@@ -77,6 +77,7 @@ void UCS::search() {
 			// {
 				
 			// }
+			return;
 		}
 	}
 }
