@@ -74,3 +74,12 @@ void Node::append(state st) {
 	child_list.push_back()
 }
 */
+int Node::misplaced()
+{
+	return st.misplaced();
+}
+
+int Node::manDist()
+{
+	return st.manDist();
+}

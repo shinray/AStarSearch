@@ -61,9 +61,17 @@ int main(int argc,char* argv[]){
 			break;
 		}
 		case 2:
+		{
+			AStar misplacedsearch(st);
+			misplacedsearch.search();
 			break;
+		}
 		case 3:
+		{
+			AStar manhattansearch(st);
+			manhattansearch.search();
 			break;
+		}
 		default:
 			std::cout << "err: unknown searchType\n";
 			return 1;

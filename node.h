@@ -28,6 +28,8 @@ class Node
 		bool operator<(Node &aNode);
 		//void append(state st);
 		//int pathcost();
+		int misplaced();
+		int manDist();
 };
 
 #endif

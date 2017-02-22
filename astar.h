@@ -3,10 +3,11 @@
 
 class AStar {
 	private:
-		Node root;
+		//Node root;
 		bool isRepeat(Node n);
 	public:
 		AStar(state st);
+		virtual ~AStar();
 		void search();
 };
 

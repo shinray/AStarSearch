@@ -148,3 +148,52 @@ bool state::isGoal() {
 	
 	return ret;
 }
+
+// number of misplaced tiles
+int state::misplaced()
+{
+	int ret = 0;
+	for(unsigned i = 0; i < board.size(), i++)
+	{
+		if (board[i] != goal0[i])
+		{
+			ret++;
+		}
+	}
+	return ret;
+}
+
+// manhattan distance
+int state::manDist() {
+	int ret = 0;
+	
+	int index = 0;
+	int val = -1;
+	int col, row;
+	//need to calculate every x,y coordinate
+	for (int y = 0; y < 3; y++)
+	{
+		for (int x = 0; x < 3; x++)
+		{
+			// first convert from char to int
+			// then adjust by -1
+			val = board[index] - '0' - 1; //off by 1
+			
+			// calculate supposed x-y coords
+			// eg '1' = col:0, row:0
+			// '8' = col:1, row:2
+			if (val != -1) // not hole
+			{
+				// horizontal offset
+				col = val % 3;
+				// vertical offset
+				row = val / 3;
+				// manhattan formula: abs(y - y) + abs(x - x)
+				ret += abs(row - (y)) + abs(col - (x));
+			}
+			
+			index++;
+		}
+	}
+	return ret;
+}

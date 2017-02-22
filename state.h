@@ -4,6 +4,7 @@
 #include <vector>
 #include <algorithm> // iter_swap
 #include <iostream> // ostream overloading
+#include <stdlib.h> // abs()
 
 class state {
 	private:
@@ -28,6 +29,8 @@ class state {
 		friend std::ostream& operator<< (std::ostream &out, const state &st);
 		std::vector<state> genChildren();
 		bool isGoal();
+		int misplaced();
+		int manDist();
 };
 
 #endif
