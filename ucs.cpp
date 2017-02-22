@@ -65,13 +65,13 @@ void UCS::search() {
 			//s.pop();
 			tmp = tmp->getParent();
 			
-			while (tmp->getParent() != NULL) {
+			while (tmp != NULL) {
 				solution.push_back(*tmp);
 				tmp = tmp->getParent();
 			}
 			
 			// push root node
-			solution.push_back(*tmp);
+			//solution.push_back(*tmp);
 			
 			// for (int i = 0; i < solution.size(); i++)
 			// {
