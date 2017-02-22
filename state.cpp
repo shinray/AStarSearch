@@ -63,7 +63,7 @@ void state::setState(std::vector<char> positions) {
 }
 
 // assignment, for a specific index
-void set(char val, int index) {
+void state::set(char val, int index) {
 	board[index] = val;
 	return;
 }
@@ -103,7 +103,7 @@ void state::swap(int first, int second, std::vector<state> &ret) {
 	return;
 }
 
-std::ostream& operator<< (std::ostream &out, const state &st)
+std::ostream& state::operator<< (std::ostream &out, const state &st)
 {
 	out << board[0] << ' ' << board[1] << ' ' << board[2] << '\n';
 	out << board[3] << ' ' << board[4] << ' ' << board[5] << '\n';
