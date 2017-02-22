@@ -9,7 +9,7 @@
 class UCS
 {
 	private:
-		Node root;
+		//Node root;
 		//std::priority_queue<Node> stack;
 		std::queue<Node*> q;
 		std::vector<Node> solution;

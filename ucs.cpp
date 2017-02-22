@@ -4,7 +4,7 @@
 
 
 UCS::UCS(state st) {
-	root = Node(st);
+	Node root(st);
 	q.push(&root);
 	//search(stack);
 	return;
