@@ -95,7 +95,7 @@ int state::getHole() {
 
 // swaps the values at the indices 'first' and 'second', stores
 // it in a vector supplied
-void state::swap(int first, int second, &std::vector<state> ret) {
+void state::swap(int first, int second, std::vector<state> &ret) {
 	std::vector<char> tmp = getState();
 	std::iter_swap(tmp.begin() + first, tmp.begin() + second);
 	state newstate = state(tmp);

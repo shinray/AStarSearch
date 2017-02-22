@@ -11,7 +11,7 @@ class state {
 		static const std::vector<char> goal0;
 		static const std::vector<char> goal1;
 		int getHole();
-		void swap(int first, int second);
+		void swap(int first, int second, std::vector<state> &ret);
 	public:
 		state();
 		state(char first, char second, char third,
