@@ -61,7 +61,7 @@ void AStar::search(int heuristic)
 			std::cout << "\nNodes expanded: " << nodeCount << '\n';
 			std::cout << "Max queue size: " << maxQsize << '\n';
 			std::cout << "Goal node depth: " << finalDepth << '\n';
-			std::cout << "soln size: " << solution.size() << '\n';
+			//std::cout << "soln size: " << solution.size() << '\n';
 			switch(heuristic)
 			{
 				case 0:
@@ -180,5 +180,17 @@ void AStar::search(int heuristic)
 AStar::~AStar() {
 	for(Node *n : nodelist){
 		delete n;
+	}
+}
+
+void AStar::showSoln()
+{
+	std::cout << "\nSuggested solution path:\n";
+	int count = 0;
+	for (unsigned i = solution.size(); i-- > 0; )
+	// for (unsigned i = 0; i < solution.size(); i++)
+	{
+		std::cout << "Step " << count++ << '\n';
+		std::cout << solution[i].getState();
 	}
 }

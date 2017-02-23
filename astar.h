@@ -34,6 +34,7 @@ class AStar {
 		void search(int heuristic);
 		// 0 for misplaced tile
 		// 1 for manhattan distance
+		void showSoln();
 };
 
 #endif

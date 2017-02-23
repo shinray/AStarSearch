@@ -6,6 +6,22 @@
 	
 // }
 
+void debug()
+{
+	std::vector<char> testvec = {
+			'1','2','3',
+			'4','5','0',
+			'6','7','8'};
+	std::vector<char> testvec2 = {
+			'1','2','3',
+			'4','0','5',
+			'6','7','8'};
+	std::vector<char> testvec3 = {
+			'4','1','3',
+			'0','2','5',
+			'6','7','8'};
+}
+
 int main(int argc,char* argv[]){
 	int puzzleType;
 	int searchType;
@@ -16,6 +32,12 @@ int main(int argc,char* argv[]){
 			<< " enter your own puzzle." << std::endl;
 	
 	std::cin >> puzzleType;
+	
+	if (puzzleType == 3) 
+	{
+		debug();
+		return 0;
+	}
 	
 	if(puzzleType == 2)
 	{
@@ -61,18 +83,21 @@ int main(int argc,char* argv[]){
 			// UCSsearch.search();
 			AStar UCSsearch = AStar(st);
 			UCSsearch.search(2); // 2 for no heuristic
+			UCSsearch.showSoln();
 			break;
 		}
 		case 2:
 		{
 			AStar misplacedsearch = AStar(st);
 			misplacedsearch.search(0); // 0 for misplaced
+			misplacedsearch.showSoln();
 			break;
 		}
 		case 3:
 		{
 			AStar manhattansearch = AStar(st);
 			manhattansearch.search(1); // 1 for manhattan
+			manhattansearch.showSoln();
 			break;
 		}
 		case 4:
@@ -95,15 +120,16 @@ int main(int argc,char* argv[]){
 			Node testnode = Node(teststate);
 			Node testnode2 = Node(teststate2);
 			bool testbool = (testnode > testnode2);
-			std::cout << "nodetest: " << testbool << '\n';
+			//std::cout << "nodetest: " << testbool << '\n';
 			AStar testsearch = AStar(teststate3);
 			testsearch.search(1);
+			testsearch.showSoln();
 			break;
 		}
 		default:
 			std::cout << "err: unknown searchType\n";
 			return 1;
 	}
-			
+
 	return 0;
 }
