@@ -48,12 +48,12 @@ void AStar::search(int heuristic)
 				// if Misplaced
 				if (heuristic == 0)
 				{
-					newNode->misplaced();
+					newNode->misplaced(); // calculate hcost
 				}
 				// if manhattan
 				else if (heuristic == 1)
 				{
-					newNode->manDist();
+					newNode->manDist(); // calculate hcost
 				}
 				else{
 					std::cout << "astar: invalid heuristic\n";
@@ -63,7 +63,7 @@ void AStar::search(int heuristic)
 				nodelist.push_back(newNode); // to be deleted
 				if(!isRepeat(*newNode))
 				{
-					q.push(newNode);
+					q.push(newNode); // only push after cost is calculated
 					currQsize++;
 					// calculates max
 					maxQsize = (currQsize > maxQsize) ? currQsize : maxQsize;

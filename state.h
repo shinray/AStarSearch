@@ -2,7 +2,7 @@
 #define STATE_H
 
 #include <vector>
-#include <algorithm> // iter_swap
+#include <algorithm> // iter_swap, find
 #include <iostream> // ostream overloading
 #include <stdlib.h> // abs()
 
@@ -31,6 +31,7 @@ class state {
 		bool isGoal();
 		int misplaced();
 		int manDist();
+		bool operator==(const state &rhs);
 };
 
 #endif

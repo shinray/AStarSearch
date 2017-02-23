@@ -40,12 +40,51 @@ void UCS::search() {
 	int maxQsize = 1;
 	int currQsize = 1;
 	while(!q.empty()) {
-		Node* tmp = q.front();
+		Node* tmp = q.top();
 		std::cout << "Expanding state\n";
 		std::cout << tmp->getState();
 		q.pop();
 		currQsize--;
 		
+		if (tmp->getState().isGoal()) {
+			int finalDepth = tmp->getDepth();
+			// clear, just in case.
+			if (!solution.empty()) {
+				solution.clear();
+			}
+			// start calculating solution
+			solution.push_back(*tmp);
+			tmp = tmp->getParent();
+			
+			while (tmp != NULL) {
+				solution.push_back(*tmp);
+				tmp = tmp->getParent();
+			}
+			std::cout << "\nNodes expanded: " << nodeCount << '\n';
+			std::cout << "Max queue size: " << maxQsize << '\n';
+			std::cout << "Goal node depth: " << finalDepth << '\n';
+			return;
+		}
+		else {
+			explored.push_back(tmp->getState());
+			nodeCount++;
+			std::vector<state> tmpchildren = tmp->genChild();
+			for (unsigned i = 0; i < tmpchildren.size(); i++)
+			{
+				//Node newNode = Node(tmpchildren[i], tmp);
+				Node* newNode = new Node(tmpchildren[i], tmp);
+				nodelist.push_back(newNode);
+				//if(!isRepeat(*newNode))
+				if (std::find(explored.begin(), explored.end(), newNode->getState()) == explored.end())
+				{
+					q.push(newNode);
+					currQsize++;
+					// calculates max
+					maxQsize = (currQsize > maxQsize) ? currQsize : maxQsize;
+				}
+			}
+		}
+		/*
 		if (!tmp->getState().isGoal()) {
 			nodeCount++; // expanding node
 			std::vector<state> tmpchildren = tmp->genChild();
@@ -91,6 +130,7 @@ void UCS::search() {
 			std::cout << "Goal node depth: " << finalDepth << '\n';
 			return;
 		}
+		*/
 	}
 	
 	std::cout << "\nucs: ERROR: queue emptied!\n";

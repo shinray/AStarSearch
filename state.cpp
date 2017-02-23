@@ -197,3 +197,7 @@ int state::manDist() {
 	}
 	return ret;
 }
+
+bool state::operator==(const state &rhs) {
+	return this->board == rhs.board;
+}

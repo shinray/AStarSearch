@@ -14,7 +14,7 @@ Node::Node(state input) {
 	parent = NULL;
 	st = input;
 	hcost = 0;
-	fcost = hcost + cost;
+	fcost = hcost + depth;
 }
 
 Node::Node(state input, Node* p) {
@@ -22,7 +22,7 @@ Node::Node(state input, Node* p) {
 	parent = p;
 	depth = parent->getDepth() + cost;
 	hcost = 0;
-	fcost = hcost + cost;
+	fcost = hcost + depth;
 }
 
 // Node::~Node() {
@@ -68,10 +68,10 @@ std::vector<state> Node::genChild(){
 	return children;
 }
 
-bool Node::operator<(Node &aNode) {
+bool Node::operator<(const Node &aNode) {
 	return (this->cost_() < aNode.cost_());
 }
-bool Node::operator>(Node &aNode) {
+bool Node::operator>(const Node &aNode) {
 	return (this->cost_() > aNode.cost_());
 }
 
@@ -95,8 +95,9 @@ int Node::manDist()
 	return hcost;
 }
 
-int Node::cost_()
+// ALWAYS ALWAYS ALWAYS do misplaced() or mandist() first
+int Node::cost_() const
 {
-	fcost = hcost + cost;
+	//fcost = hcost + cost;
 	return fcost;
 }
