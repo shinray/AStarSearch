@@ -71,6 +71,9 @@ std::vector<state> Node::genChild(){
 bool Node::operator<(Node &aNode) {
 	return (this->cost_() < aNode.cost_());
 }
+bool Node::operator>(Node &aNode) {
+	return (this->cost_() > aNode.cost_());
+}
 
 /*
 void Node::append(state st) {

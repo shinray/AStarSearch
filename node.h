@@ -28,6 +28,7 @@ class Node
 		Node* getParent();
 		std::vector<state> genChild();
 		bool operator<(Node &aNode);
+		bool operator>(Node &aNode);
 		//void append(state st);
 		//int pathcost();
 		int misplaced();
