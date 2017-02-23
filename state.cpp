@@ -153,7 +153,7 @@ bool state::isGoal() {
 int state::misplaced()
 {
 	int ret = 0;
-	for(unsigned i = 0; i < board.size(), i++)
+	for(unsigned i = 0; i < board.size(); i++)
 	{
 		if (board[i] != goal0[i])
 		{

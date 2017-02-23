@@ -12,6 +12,8 @@ class Node
 		state st;
 		int depth;
 		static const int cost; // now that's a virtual tongue twister
+		int hcost; //heuristic
+		int fcost; //total cost for a*
 	public:
 		//Node();
 		Node(state input);
@@ -30,6 +32,7 @@ class Node
 		//int pathcost();
 		int misplaced();
 		int manDist();
+		int cost_();
 };
 
 #endif

@@ -1,5 +1,6 @@
 #include <iostream>
 #include "ucs.h"
+#include "astar.h"
 
 // void uniformcost() {
 	
@@ -62,14 +63,14 @@ int main(int argc,char* argv[]){
 		}
 		case 2:
 		{
-			AStar misplacedsearch(st);
-			misplacedsearch.search();
+			AStar misplacedsearch = AStar(st);
+			misplacedsearch.search(0); // 0 for misplaced
 			break;
 		}
 		case 3:
 		{
-			AStar manhattansearch(st);
-			manhattansearch.search();
+			AStar manhattansearch = AStar(st);
+			manhattansearch.search(1); // 1 for manhattan
 			break;
 		}
 		default:

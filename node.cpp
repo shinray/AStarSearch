@@ -13,12 +13,16 @@ Node::Node(state input) {
 	depth = cost;
 	parent = NULL;
 	st = input;
+	hcost = 0;
+	fcost = hcost + cost;
 }
 
 Node::Node(state input, Node* p) {
 	st = input;
 	parent = p;
 	depth = parent->getDepth() + cost;
+	hcost = 0;
+	fcost = hcost + cost;
 }
 
 // Node::~Node() {
@@ -65,7 +69,7 @@ std::vector<state> Node::genChild(){
 }
 
 bool Node::operator<(Node &aNode) {
-	return (this->getDepth() < aNode.getDepth());
+	return (this->cost_() < aNode.cost_());
 }
 
 /*
@@ -76,10 +80,20 @@ void Node::append(state st) {
 */
 int Node::misplaced()
 {
-	return st.misplaced();
+	hcost = st.misplaced();
+	fcost = hcost + cost;
+	return hcost;
 }
 
 int Node::manDist()
 {
-	return st.manDist();
+	hcost = st.manDist();
+	fcost = hcost + cost;
+	return hcost;
+}
+
+int Node::cost_()
+{
+	fcost = hcost + cost;
+	return fcost;
 }
