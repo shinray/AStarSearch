@@ -27,8 +27,8 @@ class Node
 		int getDepth();
 		Node* getParent();
 		std::vector<state> genChild();
-		bool operator<(const Node &aNode);
-		bool operator>(const Node &aNode);
+		bool operator<(const Node &aNode) const;
+		bool operator>(const Node &aNode) const;
 		//void append(state st);
 		//int pathcost();
 		int misplaced();

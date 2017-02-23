@@ -7,14 +7,14 @@
 #include <cstdlib>
 
 
-// class Compare
-// {
-// public:
-    // bool operator() (Node a, Node b)
-    // {
-        // return (a.cost_() < b.cost_());
-    // }
-// };
+struct Compare
+{
+public:
+    bool operator() (const Node* a, const Node* b) const
+    {
+        return (a->cost_() > b->cost_());
+    }
+};
 
 //typedef std::priority_queue<Node*, std::vector<Node*>, Compare> nodeCompare;
 
@@ -24,9 +24,10 @@ class AStar {
 		bool isRepeat(Node n);
 		// nodeCompare q;
 		//std::priority_queue<Node*, std::vector<Node*>, Compare> q;
-		std::priority_queue<Node*, std::vector<Node*>,std::greater<Node*>> q;
+		std::priority_queue<Node*, std::vector<Node*>,Compare> q;
 		std::vector<Node*> nodelist;
 		std::vector<Node> solution;
+		std::vector<state> explored;
 	public:
 		AStar(state st);
 		virtual ~AStar();

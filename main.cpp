@@ -57,8 +57,10 @@ int main(int argc,char* argv[]){
 	{
 		case 1:
 		{
-			UCS UCSsearch = UCS(st);
-			UCSsearch.search();
+			// UCS UCSsearch = UCS(st);
+			// UCSsearch.search();
+			AStar UCSsearch = AStar(st);
+			UCSsearch.search(2); // 2 for no heuristic
 			break;
 		}
 		case 2:
@@ -72,6 +74,15 @@ int main(int argc,char* argv[]){
 			AStar manhattansearch = AStar(st);
 			manhattansearch.search(1); // 1 for manhattan
 			break;
+		}
+		case 4:
+		{
+			state teststate = state('1','2','3','4','5','0','6','7','8');
+			state teststate2 = state('1','2','3','0','5','6','4','7','8');
+			Node testnode = Node(teststate);
+			Node testnode2 = Node(testnode2);
+			bool testbool = (testnode > testnode2);
+			std::cout << "nodetest: " << testbool << '\n';
 		}
 		default:
 			std::cout << "err: unknown searchType\n";

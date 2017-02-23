@@ -38,6 +38,71 @@ void AStar::search(int heuristic)
 		q.pop();
 		currQsize--;
 		
+		// second explored check
+		if (std::find(explored.begin(), explored.end(), tmp->getState()) != explored.end())
+		{ // if already explored, continue loop
+			continue;
+		}
+		
+		if (tmp->getState().isGoal()) {
+			int finalDepth = tmp->getDepth();
+			// clear, just in case.
+			if (!solution.empty()) {
+				solution.clear();
+			}
+			// start calculating solution
+			solution.push_back(*tmp);
+			tmp = tmp->getParent();
+			
+			while (tmp != NULL) {
+				solution.push_back(*tmp);
+				tmp = tmp->getParent();
+			}
+			std::cout << "\nNodes expanded: " << nodeCount << '\n';
+			std::cout << "Max queue size: " << maxQsize << '\n';
+			std::cout << "Goal node depth: " << finalDepth << '\n';
+			std::cout << "soln size: " << solution.size() << '\n';
+			return;
+		}
+		else {
+			explored.push_back(tmp->getState());
+			nodeCount++;
+			std::vector<state> tmpchildren = tmp->genChild();
+			for (unsigned i = 0; i < tmpchildren.size(); i++)
+			{
+				//Node newNode = Node(tmpchildren[i], tmp);
+				Node* newNode = new Node(tmpchildren[i], tmp);
+				nodelist.push_back(newNode);
+				//if(!isRepeat(*newNode))
+				// if Misplaced
+				if(heuristic == 2) // UCS
+				{
+					
+				}
+				else if (heuristic == 0)
+				{
+					newNode->misplaced(); // calculate hcost
+				}
+				// if manhattan
+				else if (heuristic == 1)
+				{
+					newNode->manDist(); // calculate hcost
+				}
+				else{
+					std::cout << "astar: invalid heuristic\n";
+					exit(1);
+				}
+				
+				if (std::find(explored.begin(), explored.end(), newNode->getState()) == explored.end())
+				{// if not found then push
+					q.push(newNode);
+					currQsize++;
+					// calculates max
+					maxQsize = (currQsize > maxQsize) ? currQsize : maxQsize;
+				}
+			}
+		}
+		/*
 		if (!tmp->getState().isGoal()) {
 			nodeCount++; // expanding node
 			std::vector<state> tmpchildren = tmp->genChild();
@@ -87,6 +152,7 @@ void AStar::search(int heuristic)
 			std::cout << "Goal node depth: " << finalDepth << '\n';
 			return;
 		}
+		*/
 	}
 	std::cout << "\nA*: ERROR: queue emptied!\n";
 }

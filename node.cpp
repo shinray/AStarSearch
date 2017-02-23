@@ -10,7 +10,7 @@ const int Node::cost = 1; // n-puzzle
 
 // presumably this is a root node
 Node::Node(state input) {
-	depth = cost;
+	depth = 0;
 	parent = NULL;
 	st = input;
 	hcost = 0;
@@ -68,10 +68,10 @@ std::vector<state> Node::genChild(){
 	return children;
 }
 
-bool Node::operator<(const Node &aNode) {
+bool Node::operator<(const Node &aNode) const{
 	return (this->cost_() < aNode.cost_());
 }
-bool Node::operator>(const Node &aNode) {
+bool Node::operator>(const Node &aNode) const{
 	return (this->cost_() > aNode.cost_());
 }
 
