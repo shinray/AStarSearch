@@ -34,6 +34,7 @@ class Node
 		int misplaced();
 		int manDist();
 		int cost_() const;
+		int hcost_() const;
 };
 
 #endif

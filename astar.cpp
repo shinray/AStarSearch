@@ -62,6 +62,21 @@ void AStar::search(int heuristic)
 			std::cout << "Max queue size: " << maxQsize << '\n';
 			std::cout << "Goal node depth: " << finalDepth << '\n';
 			std::cout << "soln size: " << solution.size() << '\n';
+			switch(heuristic)
+			{
+				case 0:
+					std::cout << "heuristic: misplaced tile\n";
+					break;
+				case 1:
+					std::cout << "heuristic: manhattan dist\n";
+					break;
+				case 2:
+					std::cout << "heuristic: none (uniform cost search)\n";
+					break;
+				default:
+					std::cout << "astar: unknown heuristic\n";
+					break;
+			}
 			return;
 		}
 		else {
@@ -74,34 +89,38 @@ void AStar::search(int heuristic)
 				Node* newNode = new Node(tmpchildren[i], tmp);
 				nodelist.push_back(newNode);
 				//if(!isRepeat(*newNode))
-				// if Misplaced
-				if(heuristic == 2) // UCS
-				{
-					
-				}
-				else if (heuristic == 0)
-				{
-					newNode->misplaced(); // calculate hcost
-				}
-				// if manhattan
-				else if (heuristic == 1)
-				{
-					newNode->manDist(); // calculate hcost
-				}
-				else{
-					std::cout << "astar: invalid heuristic\n";
-					exit(1);
-				}
+				
 				
 				if (std::find(explored.begin(), explored.end(), newNode->getState()) == explored.end())
 				{// if not found then push
 					q.push(newNode);
+					// if Misplaced
+					if(heuristic == 2) // UCS
+					{
+						
+					}
+					else if (heuristic == 0)
+					{
+						newNode->misplaced(); // calculate hcost
+					}
+					// if manhattan
+					else if (heuristic == 1)
+					{
+						newNode->manDist(); // calculate hcost
+					}
+					else{
+						std::cout << "astar: invalid heuristic\n";
+						exit(1);
+					}
 					currQsize++;
 					// calculates max
 					maxQsize = (currQsize > maxQsize) ? currQsize : maxQsize;
 				}
 			}
 		}
+		Node* next = q.top();
+		std::cout << "The best state to expand with a g(n) = " << 
+			next->getDepth() << " and h(n) = " << next->hcost_() << " is...\n";
 		/*
 		if (!tmp->getState().isGoal()) {
 			nodeCount++; // expanding node

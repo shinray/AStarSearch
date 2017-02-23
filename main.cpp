@@ -77,12 +77,28 @@ int main(int argc,char* argv[]){
 		}
 		case 4:
 		{
-			state teststate = state('1','2','3','4','5','0','6','7','8');
-			state teststate2 = state('1','2','3','0','5','6','4','7','8');
+			std::vector<char> testvec = {
+			'1','2','3',
+			'4','5','0',
+			'6','7','8'};
+			std::vector<char> testvec2 = {
+			'1','2','3',
+			'4','0','5',
+			'6','7','8'};
+			std::vector<char> testvec3 = {
+			'1','2','3',
+			'4','0','6',
+			'7','5','8'};
+			state teststate = state(testvec);
+			state teststate2 = state(testvec2);
+			state teststate3 = state(testvec3);
 			Node testnode = Node(teststate);
-			Node testnode2 = Node(testnode2);
+			Node testnode2 = Node(teststate2);
 			bool testbool = (testnode > testnode2);
 			std::cout << "nodetest: " << testbool << '\n';
+			AStar testsearch = AStar(teststate3);
+			testsearch.search(1);
+			break;
 		}
 		default:
 			std::cout << "err: unknown searchType\n";

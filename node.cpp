@@ -84,14 +84,14 @@ void Node::append(state st) {
 int Node::misplaced()
 {
 	hcost = st.misplaced();
-	fcost = hcost + cost;
+	fcost = hcost + depth;
 	return hcost;
 }
 
 int Node::manDist()
 {
 	hcost = st.manDist();
-	fcost = hcost + cost;
+	fcost = hcost + depth;
 	return hcost;
 }
 
@@ -100,4 +100,9 @@ int Node::cost_() const
 {
 	//fcost = hcost + cost;
 	return fcost;
+}
+
+int Node::hcost_() const
+{
+	return hcost;
 }
